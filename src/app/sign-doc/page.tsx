@@ -1,8 +1,7 @@
 "use client";
-
+import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import HelloSign from "hellosign-embedded";
 
 interface SigningData {
   title: string;
@@ -24,7 +23,10 @@ export default function EmbeddedSign() {
 
   const fetchEmbeddedUrl = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/embedded-url");
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/embedded-url`
+      );
+      console.log(response.data);
       const { embeddedUrl: url } = response.data;
 
       if (!url) {
@@ -38,8 +40,9 @@ export default function EmbeddedSign() {
     }
   };
 
-  const openHelloSignClient = (url: string) => {
+  const openHelloSignClient = async (url: string) => {
     try {
+      const HelloSign = (await import("hellosign-embedded")).default;
       const client = new HelloSign();
       client.open(url, {
         clientId: process.env.NEXT_PUBLIC_DROPBOX_SIGN_CLIENT_ID,

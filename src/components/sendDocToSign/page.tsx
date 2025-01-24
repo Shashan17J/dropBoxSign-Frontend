@@ -22,7 +22,7 @@ export default function SigningDoc() {
       const toastId = toast.loading("Sending document...");
       try {
         const response = await axios.post(
-          "/api/dropbox",
+          ` ${process.env.NEXT_PUBLIC_BACKEND_URL}/sign`,
           {
             role,
             name,
@@ -35,13 +35,15 @@ export default function SigningDoc() {
             },
           }
         );
-        if (response) {
+        console.log(response.data.signerData);
+        if (response && response?.data?.signerData) {
           toast.success("Document Sent Successfully");
-          console.log("dasw", response);
-          localStorage.setItem(
-            "signerData",
-            JSON.stringify(response.data.response.signerData)
-          );
+          if (typeof window !== "undefined") {
+            localStorage.setItem(
+              "signerData",
+              JSON.stringify(response.data.signerData)
+            );
+          }
         }
       } catch (error: any) {
         toast.error(error.response?.data?.error || error.message);
@@ -135,7 +137,7 @@ export default function SigningDoc() {
           </div>
           <button
             type="submit"
-            className="w-full px-6 py-3 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 transition duration-300 ease-in-out transform hover:scale-105"
+            className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 transition duration-300 ease-in-out transform hover:scale-105"
           >
             Send Envelope
           </button>
