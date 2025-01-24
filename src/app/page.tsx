@@ -1,4 +1,4 @@
-import SigningDoc from "@/components/form";
+import SigningDoc from "@/components/sendDocToSign/page";
 
 export default function Home() {
   return (

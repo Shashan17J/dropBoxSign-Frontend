@@ -30,3 +30,26 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// export async function GET(request: NextRequest) {
+//   try {
+//     console.log("entered");
+//     const response = await axios.post(
+//       `${process.env.NEXT_PUBLIC_BACKEND_URL}/embedded-url`
+//     );
+
+//     return NextResponse.json({
+//       success: true,
+//       response: response.data.embeddedUrl,
+//     });
+//   } catch (error: any) {
+//     console.log("error", error);
+//     return NextResponse.json(
+//       {
+//         success: false,
+//         error: error instanceof Error ? error.message : "Unknown error",
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }

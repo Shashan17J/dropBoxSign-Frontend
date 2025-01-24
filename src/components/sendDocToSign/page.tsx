@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Navbar from "../navbar/page";
 
 export default function SigningDoc() {
   const [templateId, setTemplateId] = useState<string>("");
@@ -36,6 +37,11 @@ export default function SigningDoc() {
         );
         if (response) {
           toast.success("Document Sent Successfully");
+          console.log("dasw", response);
+          localStorage.setItem(
+            "signerData",
+            JSON.stringify(response.data.response.signerData)
+          );
         }
       } catch (error: any) {
         toast.error(error.response?.data?.error || error.message);
@@ -46,16 +52,16 @@ export default function SigningDoc() {
     }
   };
 
-
   return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-800 p-4">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 p-4">
+      <Navbar />
       <div className="w-full max-w-md">
         <form
           onSubmit={handleSubmit}
           className="bg-gray-100 rounded-xl shadow-2xl p-8 space-y-6 transition-all duration-500 ease-in-out transform hover:scale-105"
         >
           <h2 className="text-4xl font-serif mb-10 text-center text-gray-800">
-            Sign With Dropbox Sign
+            Send Document To Sign
           </h2>
           <div className="space-y-4">
             <div>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "hellosign-embedded": "^2.12.2",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -17,6 +18,7 @@
     "react-hot-toast": "^2.5.1"
   },
   "devDependencies": {
+    "@types/hellosign-embedded": "^2.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
