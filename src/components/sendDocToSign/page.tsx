@@ -35,7 +35,7 @@ export default function SigningDoc() {
             },
           }
         );
-        console.log(response.data.signerData);
+
         if (response && response?.data?.signerData) {
           toast.success("Document Sent Successfully");
           if (typeof window !== "undefined") {

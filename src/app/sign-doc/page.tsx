@@ -25,8 +25,7 @@ export default function EmbeddedSign() {
     try {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/embedded-url`
-      );
-      console.log(response.data);
+      );;
       const { embeddedUrl: url } = response.data;
 
       if (!url) {
