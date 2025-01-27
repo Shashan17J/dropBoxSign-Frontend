@@ -6,7 +6,9 @@ import axios from "axios";
 interface SigningData {
   title: string;
   message: string;
+  name: string;
   requesterEmailAddress: string;
+  emailAddress: string;
 }
 
 export default function EmbeddedSign() {
@@ -25,7 +27,7 @@ export default function EmbeddedSign() {
     try {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/embedded-url`
-      );;
+      );
       const { embeddedUrl: url } = response.data;
 
       if (!url) {
@@ -88,6 +90,14 @@ export default function EmbeddedSign() {
             <p className="text-gray-700 mb-2">
               <span className="font-semibold">Message:</span>{" "}
               {signerData.message}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <span className="font-semibold">Signer Name:</span>{" "}
+              {signerData.name}
+            </p>
+            <p className="text-gray-700 mb-4">
+              <span className="font-semibold">Signer Email:</span>{" "}
+              {signerData.emailAddress}
             </p>
             <p className="text-gray-700 mb-4">
               <span className="font-semibold">Requester Email:</span>{" "}
